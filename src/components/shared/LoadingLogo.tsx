@@ -8,7 +8,7 @@ const LoadingLogo = ({ size = 100 }: LoadingLogoProps) => {
   return (
     <div className="w-full h-full flex justify-center items-center">
       <Image
-        src="logo.svg"
+        src="/logo.svg"
         alt="logo"
         width={size}
         height={size}
