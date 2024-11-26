@@ -1,9 +1,11 @@
-import React from "react";
+"use client";
+
+import ConversationContainer from "@/components/shared/conversation/ConversationContainer";
 
 type ConversationPageProps = {};
 
 const ConversationPage = (props: ConversationPageProps) => {
-  return <div>ConversationsPage</div>;
+  return <ConversationContainer>ConversationsPage</ConversationContainer>;
 };
 
 export default ConversationPage;

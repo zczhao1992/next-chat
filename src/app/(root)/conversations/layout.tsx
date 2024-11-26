@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
+
+import ItemList from "@/components/shared/item-list/ItemList";
 
 type ConversationsLayoutProps = React.PropsWithChildren<{}>;
 
 const ConversationsLayout = ({ children }: ConversationsLayoutProps) => {
-  return <div>{children}</div>;
+  return (
+    <>
+      <ItemList title="聊天"></ItemList>
+      {children}
+    </>
+  );
 };
 
 export default ConversationsLayout;

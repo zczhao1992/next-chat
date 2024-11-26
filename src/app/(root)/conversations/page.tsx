@@ -1,9 +1,7 @@
-import React from "react";
+import ConversationFallback from "@/components/shared/conversation/ConversationFallback";
 
-type ConversationsPageProps = {};
-
-const ConversationsPage = (props: ConversationsPageProps) => {
-  return <div>ConversationsPage</div>;
+const ConversationsPage = () => {
+  return <ConversationFallback />;
 };
 
 export default ConversationsPage;
