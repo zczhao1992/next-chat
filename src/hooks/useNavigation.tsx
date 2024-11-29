@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import { MessageSquare, Users } from "lucide-react";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+// import { useQuery } from "convex/react";
+// import { api } from "../../convex/_generated/api";
 
 export const useNavigation = () => {
   const pathname = usePathname();
