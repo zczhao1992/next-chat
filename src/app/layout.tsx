@@ -5,6 +5,7 @@ import LoadingLogo from "@/components/shared/LoadingLogo";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ui/theme/theme-provider";
 import ConvexClientProvider from "@/components/providers/ConvexClientProvider";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -49,6 +50,7 @@ export default function RootLayout({
             </ClerkLoading>
             <ClerkLoaded>
               <TooltipProvider>{children}</TooltipProvider>
+              <Toaster richColors />
             </ClerkLoaded>
           </ConvexClientProvider>
         </ThemeProvider>

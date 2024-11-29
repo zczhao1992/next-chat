@@ -39,6 +39,7 @@ const addFriendFormSchema = z.object({
     .min(1, { message: "不可为空" })
     .email("请输入正确的邮箱地址"),
 });
+
 const AddFriendDialog = () => {
   const { mutate: createRequest, pending } = useMutationState(
     api.request.create
@@ -66,11 +67,11 @@ const AddFriendDialog = () => {
     <Dialog>
       <Tooltip>
         <TooltipTrigger>
-          <Button size="icon" variant="outline">
-            <DialogTrigger asChild>
+          <DialogTrigger asChild>
+            <Button size="icon" variant="outline">
               <UserPlus />
-            </DialogTrigger>
-          </Button>
+            </Button>
+          </DialogTrigger>
         </TooltipTrigger>
         <TooltipContent>
           <p>添加好友</p>
@@ -92,9 +93,9 @@ const AddFriendDialog = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>邮箱</FormLabel>
                   <FormControl>
-                    <Input placeholder="Email..." {...field} />
+                    <Input placeholder="请输入对方邮箱" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

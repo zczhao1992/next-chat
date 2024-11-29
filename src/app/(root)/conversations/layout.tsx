@@ -2,9 +2,11 @@
 
 import ItemList from "@/components/shared/item-list/ItemList";
 
-type ConversationsLayoutProps = React.PropsWithChildren<{}>;
-
-const ConversationsLayout = ({ children }: ConversationsLayoutProps) => {
+const ConversationsLayout = ({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) => {
   return (
     <>
       <ItemList title="聊天"></ItemList>
