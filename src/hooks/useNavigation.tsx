@@ -9,13 +9,13 @@ export const useNavigation = () => {
   const pathname = usePathname();
 
   const requestsCount = useQuery(api.requests.count);
-  // const conversations = useQuery(api.conversations.get);
+  const conversations = useQuery(api.conversations.get);
 
-  // const unseenMessagesCount = useMemo(() => {
-  //   return conversations?.reduce((acc, curr) => {
-  //     return acc + curr.unseenCount;
-  //   }, 0);
-  // }, [conversations]);
+  const unseenMessagesCount = useMemo(() => {
+    return conversations?.reduce((acc, curr) => {
+      return acc + curr.unseenCount;
+    }, 0);
+  }, [conversations]);
 
   const paths = useMemo(
     () => [
@@ -24,7 +24,7 @@ export const useNavigation = () => {
         href: "/conversations",
         icon: <MessageSquare />,
         active: pathname.startsWith("/conversations"),
-        // count: unseenMessagesCount,
+        count: unseenMessagesCount,
       },
       {
         name: "朋友",

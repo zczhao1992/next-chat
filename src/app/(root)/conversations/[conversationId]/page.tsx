@@ -9,14 +9,19 @@ import { useQuery } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { Id } from "../../../../../convex/_generated/dataModel";
 import { Loader2 } from "lucide-react";
+import RemoveFriendDialog from "./_components/dialogs/RemoveFriendDialog";
+import DeleteGroupDialog from "./_components/dialogs/DeleteGroupDialog";
+import LeaveGroupDialog from "./_components/dialogs/LeaveGroupDialog";
 
-type Props = {
+type ConversationPageProps = {
   params: {
     conversationId: Id<"conversations">;
   };
 };
 
-const ConversationPage = ({ params: { conversationId } }: Props) => {
+const ConversationPage = ({
+  params: { conversationId },
+}: ConversationPageProps) => {
   const conversation = useQuery(api.conversation.get, { id: conversationId });
 
   const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false);
@@ -32,7 +37,7 @@ const ConversationPage = ({ params: { conversationId } }: Props) => {
     <p className="w-full h-full flex items-center justify-center">未发现对话</p>
   ) : (
     <ConversationContainer>
-      {/* <RemoveFriendDialog
+      <RemoveFriendDialog
         conversationId={conversationId}
         open={removeFriendDialogOpen}
         setOpen={setRemoveFriendDialogOpen}
@@ -46,7 +51,7 @@ const ConversationPage = ({ params: { conversationId } }: Props) => {
         conversationId={conversationId}
         open={leaveGroupDialogOpen}
         setOpen={setLeaveGroupDialogOpen}
-      /> */}
+      />
       <Header
         name={
           (conversation.isGroup
