@@ -20,6 +20,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ConvexError } from "convex/values";
 import TextareaAutosize from "react-textarea-autosize";
 import { useConversation } from "@/hooks/useConversation";
+import MessageActionsPopover from "./MessageActionsPopover";
+import { useTheme } from "next-themes";
+import EmojiPicker, { Theme } from "emoji-picker-react";
 
 const chatMessageSchema = z.object({
   content: z.string().min(1, { message: "消息不可为空" }),
@@ -32,6 +35,8 @@ const ChatInput = () => {
   const [cursorPosition, setCursorPosition] = useState(0);
 
   const { conversationId } = useConversation();
+
+  const { theme } = useTheme();
 
   const { mutate: createMessage, pending } = useMutationState(
     api.message.create
@@ -60,12 +65,26 @@ const ChatInput = () => {
     },
   });
 
+  const content = form.watch("content", "");
+
   const handleInputChange = (event: any) => {
     const { value, selectionStart } = event.target;
     if (selectionStart !== null) {
       form.setValue("content", value);
       setCursorPosition(selectionStart);
     }
+  };
+
+  const insertEmoji = (emoji: string) => {
+    const newText = [
+      content.substring(0, cursorPosition),
+      emoji,
+      content.substring(cursorPosition),
+    ].join("");
+
+    form.setValue("content", newText);
+
+    setCursorPosition(cursorPosition + emoji.length);
   };
 
   const handleSubmit = async (values: z.infer<typeof chatMessageSchema>) => {
@@ -85,9 +104,20 @@ const ChatInput = () => {
 
   return (
     <Card className="w-full p-2 rounded-lg relative">
-      <div className="absolute bottom-16" ref={emojiPickerRef}></div>
+      <div className="absolute bottom-16" ref={emojiPickerRef}>
+        <EmojiPicker
+          open={emojiPickerOpen}
+          theme={theme as Theme}
+          onEmojiClick={(emojiDetails) => {
+            insertEmoji(emojiDetails.emoji);
+            setEmojiPickerOpen(false);
+          }}
+          lazyLoadEmojis
+        />
+      </div>
 
       <div className="flex gap-2 items-end w-full">
+        <MessageActionsPopover setEmojiPickerOpen={setEmojiPickerOpen} />
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
