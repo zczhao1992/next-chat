@@ -40,7 +40,7 @@ export const CallRoom = ({ audio, video, handleDisconnect }: CallRoomProps) => {
 
         setToken(data.token);
       } catch (error) {
-        toast.error("无法加入",error);
+        console.error(error);
       }
     })();
   }, [user?.fullName, conversationId]);
