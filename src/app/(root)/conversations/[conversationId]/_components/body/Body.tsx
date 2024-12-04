@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useConversation } from "@/hooks/useConversation";
 import Message from "./Message";
+import { CallRoom } from "./CallRoom";
 
 type Props = {
   members: {
@@ -115,12 +116,11 @@ const Body = ({ members, callType, setCallType }: Props) => {
           }
         )
       ) : (
-        <></>
-        // <CallRoom
-        //   audio={callType === "audio" || callType === "video"}
-        //   video={callType === "video"}
-        //   handleDisconnect={() => setCallType(null)}
-        // />
+        <CallRoom
+          audio={callType === "audio" || callType === "video"}
+          video={callType === "video"}
+          handleDisconnect={() => setCallType(null)}
+        />
       )}
     </div>
   );

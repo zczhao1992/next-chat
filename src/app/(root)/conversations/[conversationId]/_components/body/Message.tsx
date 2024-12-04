@@ -82,7 +82,7 @@ const Message = ({
           ) : null}
           {type === "file" ? <FilePreview url={content[0]} /> : null}
           {type === "image" ? <ImagePreview urls={content} /> : null}
-          {type === "call" ? <Badge variant="secondary">加入通话</Badge> : null}
+          {type === "call" ? <Badge variant="secondary">已通话</Badge> : null}
         </div>
         {seen}
       </div>

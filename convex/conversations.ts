@@ -129,11 +129,11 @@ const getMessageContent = (type: string, content: string) => {
     case "text":
       return content;
     case "image":
-      return "[Image]";
+      return "[图片]";
     case "file":
-      return "[File]";
+      return "[文件]";
     case "call":
-      return "[Call]";
+      return "[通话]";
     default:
       return content;
   }
