@@ -66,7 +66,7 @@ export const CallRoom = ({ audio, video, handleDisconnect }: CallRoomProps) => {
     <div className="w-full h-full">
       <LiveKitRoom
         data-lk-theme="default"
-        serverUrl={process.env.LIVEKIT_URL}
+        serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
         token={token}
         connect={true}
         video={video}
